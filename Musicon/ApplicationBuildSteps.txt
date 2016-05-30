@@ -1,0 +1,30 @@
+﻿01	Setup basic ASP.net app with MVP and API functionality
+02	Edited all the basic pages to reflect the project
+03	Edited all the nessisay files to add fields to the register data(FirstName, LastName, Age, City, State)
+04	The files modified include(IdentityModel.cs, AccountViewModel.cs, Register.cshtml, AccountController.cs, )
+05	Added Models-Extentions Folder and IdentityExtentions.cs file to allow getting the users FirstName out of identity
+06	Adjusted Login Rules in ApplicationUserManager class in App_Start-IdentityConfig.cs file
+05	Modified Web.config for data connection string
+06	Added the Song.cs Class to Models Dir and added all the data setterGetters
+07	Added DAL folder and MusiconContext.cs and added Song DBSet setterGetter
+08	Added the SongController.cs file to Controllers Dir(w/Views using entity franework) on class Song (Musicon2.Models)
+09	Added Include ApplicationDbContext to the Musicon2Context Class and deleted the App_Data folder
+10	Enabled Migrations with Enable-Migrations -ContextTypeName Musicon2.DAL.Musicon2Context
+11	Added Seed data for Songs to the Migrations Configuration.cs file
+12	Initialized Migrations with  Add-Migration Initial
+**	***** New Data Model - Status
+13	Added Status Model w/ attributes
+14	Added Statuses to DAL
+15	Added Status to ApplicationDBContext class in Models-IdentityModels.cs
+16	Add-Migration StatusModelAdded
+17	Added Seed data for Status to the Migrations Configuration.cs file
+18	Update-Database
+19	Added ViewBag content for StatusList to SongController both for create and for edit
+20	Added Dropdown input code to the Song-create and Edit views
+**	***** New Data Model - Tempo
+21	Added Tempo Model w/ attributes		
+22	Added Tempo to DAL
+23	Added Tempo to ApplicationDBContext class in Models-IdentityModels.cs
+24	Add-Migration TempoModelAdded
+25	Added Seed data for Tempo to the Migrations Configuration.cs file
+26	Update-Database

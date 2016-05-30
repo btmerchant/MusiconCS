@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Owin;
+﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(Musicon.Startup))]
-
+[assembly: OwinStartupAttribute(typeof(Musicon.Startup))]
 namespace Musicon
 {
     public partial class Startup
