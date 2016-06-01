@@ -20,4 +20,12 @@ Add-Migration StatusModelAdded
 Added Seed data for Status to the Migrations Configuration.cs file for Status Table
 Update-Database (Had to delete App_Data .mdf file first, Update-Database -Target StatusModelAdded -Force)
 Added ViewBag content for StatusList to SongController both for create and for edit
-Added Dropdown input code to the Song-create and Edit views
+Added Dropdown input code to the Song-create and Edit views for StatusList
+***** New Data Model - Tempo
+Added Tempo Model w/ attributes		
+Added Tempo to DAL
+Add-Migration TempoModelAdded
+Added Seed data for Tempo to the Migrations Configuration.cs file
+Update-Database
+Added ViewBag content for TempoList to SongController both for create and for edit
+Added Dropdown input code to the Song-create and Edit views for TempoList

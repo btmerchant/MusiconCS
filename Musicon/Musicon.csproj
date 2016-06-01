@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201606012146441_StatusModelAdded.Designer.cs">
       <DependentUpon>201606012146441_StatusModelAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606012218342_TempoModelAdded.cs" />
+    <Compile Include="Migrations\201606012218342_TempoModelAdded.Designer.cs">
+      <DependentUpon>201606012218342_TempoModelAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Extensions\IdentityExtensions.cs" />
@@ -228,6 +232,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Song.cs" />
     <Compile Include="Models\Status.cs" />
+    <Compile Include="Models\Tempo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -315,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606012146441_StatusModelAdded.resx">
       <DependentUpon>201606012146441_StatusModelAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606012218342_TempoModelAdded.resx">
+      <DependentUpon>201606012218342_TempoModelAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

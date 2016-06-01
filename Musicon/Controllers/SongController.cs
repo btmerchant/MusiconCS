@@ -39,6 +39,7 @@ namespace Musicon.Controllers
         public ActionResult Create()
         {
             string StatusSelected;
+            string TempoSelected;
             try
             {
                 StatusSelected = db.Songs.Select(s => new SelectListItem { Value = s.Status, Text = s.Status }).ToString();
@@ -48,8 +49,19 @@ namespace Musicon.Controllers
                 StatusSelected = "Preliminary";
             }
 
+            try
+            {
+                TempoSelected = db.Songs.Select(s => new SelectListItem { Value = s.Tempo, Text = s.Tempo }).ToString();
+            }
+            catch (Exception)
+            {
+                TempoSelected = "Slow";
+            }
+
             ViewBag.StatusSelected = StatusSelected; IEnumerable<SelectListItem> StatusList = db.Statuses.Select(s => new SelectListItem { Value = s.StatusType, Text = s.StatusType });
+            ViewBag.TempoSelected = TempoSelected; IEnumerable<SelectListItem> TempoList = db.Tempos.Select(s => new SelectListItem { Value = s.TempoType, Text = s.TempoType });
             ViewBag.StatusList = StatusList;
+            ViewBag.TempoList = TempoList;
 
             return View();
         }
@@ -78,6 +90,7 @@ namespace Musicon.Controllers
         public ActionResult Edit(int? id)
         {
             string StatusSelected;
+            string TempoSelected;
             try
             {
                 StatusSelected = db.Songs.Select(s => new SelectListItem { Value = s.Status, Text = s.Status }).ToString();
@@ -87,10 +100,22 @@ namespace Musicon.Controllers
                 StatusSelected = "Preliminary";
             }
 
+            try
+            {
+                TempoSelected = db.Songs.Select(s => new SelectListItem { Value = s.Tempo, Text = s.Tempo }).ToString();
+            }
+            catch (Exception)
+            {
+                TempoSelected = "Slow";
+            }
+
             ViewBag.StatusSelected = StatusSelected;
+            ViewBag.TempoSelected = TempoSelected;
 
             IEnumerable<SelectListItem> StatusList = db.Statuses.Select(s => new SelectListItem { Value = s.StatusType, Text = s.StatusType });
+            IEnumerable<SelectListItem> TempoList = db.Tempos.Select(s => new SelectListItem { Value = s.TempoType, Text = s.TempoType });
             ViewBag.StatusList = StatusList;
+            ViewBag.TempoList = TempoList;
 
             if (id == null)
             {

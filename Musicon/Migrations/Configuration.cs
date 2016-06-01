@@ -80,6 +80,20 @@ namespace Musicon.Migrations
            {
                StatusType = "Closed"
            });
+
+                        context.Tempos.AddOrUpdate(i => i.TempoId,
+           new Tempo
+           {
+               TempoType = "Slow"               // Data Example
+            },
+           new Tempo
+           {
+               TempoType = "Moderate"
+           },
+           new Tempo
+           {
+               TempoType = "Fast"
+           });
         }
     }
 }
