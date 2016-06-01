@@ -4,6 +4,7 @@ namespace Musicon.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Musicon.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<Musicon.DAL.MusiconContext>
     {
@@ -26,6 +27,45 @@ namespace Musicon.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.Songs.AddOrUpdate(i => i.Title,
+            new Song
+            {
+                Title = "Wasting Time",               // Data Example
+                Artist = "Fade2Blue",
+                Composer = "Fade2Blue",
+                Key = "A",
+                Tempo = "Moderate",
+                Length = "",
+                Status = "Active",
+                Vocal = "Brian",
+                EntryDate = DateTime.Now
+
+            },
+            new Song
+            {
+                Title = "Bend In The River",
+                Artist = "Fade2Blue",
+                Composer = "Marty Robins",
+                Key = "C",
+                Tempo = "Moderate",
+                Length = "",
+                Status = "Active",
+                Vocal = "Brian",
+                EntryDate = DateTime.Now
+            },
+            new Song
+            {
+                Title = "The Eyes Have It",
+                Artist = "Fade2Blue",
+                Composer = "Joe Alles",
+                Key = "A",
+                Tempo = "Slow",
+                Length = "",
+                Status = "Active",
+                Vocal = "Joe",
+                EntryDate = DateTime.Now
+            });
         }
     }
 }
