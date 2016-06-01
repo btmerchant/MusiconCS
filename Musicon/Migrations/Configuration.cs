@@ -66,6 +66,20 @@ namespace Musicon.Migrations
                 Vocal = "Joe",
                 EntryDate = DateTime.Now
             });
+
+            context.Statuses.AddOrUpdate(i => i.StatusId,
+           new Status
+           {
+               StatusType = "Preliminary"               // Data Example
+            },
+           new Status
+           {
+               StatusType = "Active"
+           },
+           new Status
+           {
+               StatusType = "Closed"
+           });
         }
     }
 }

@@ -13,3 +13,9 @@ Added Include ApplicationDbContext to the Musicon2Context Class and deleted the 
 Enabled Migrations with Enable-Migrations -ContextTypeName Musicon.DAL.MusiconContext
 Added Seed data for Songs to the Migrations Configuration.cs file
 Initialized Migrations with  Add-Migration Initial
+***** New Data Model - Status
+Added Status Model w/ attributes
+Added Statuses to DAL
+Add-Migration StatusModelAdded
+Added Seed data for Status to the Migrations Configuration.cs file for Status Table
+Update-Database (Had to delete App_Data .mdf file first, Update-Database -Target StatusModelAdded -Force)

@@ -11,5 +11,6 @@ namespace Musicon.DAL
     public class MusiconContext : ApplicationDbContext
     {
         public virtual DbSet<Song> Songs { get; set; }
+        public virtual DbSet<Status> Statuses { get; set; }
     }
 }
