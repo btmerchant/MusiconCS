@@ -6,10 +6,11 @@
 
 <h2>Edit</h2>
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Song</h4>
         <hr />
@@ -67,7 +68,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("Status", (IEnumerable<SelectListItem>)ViewBag.StatusList, new { @class = "form-control", @Value = ViewBag.StatusSelected })
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -99,3 +100,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

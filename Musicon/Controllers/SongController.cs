@@ -38,18 +38,18 @@ namespace Musicon.Controllers
         // GET: Song/Create
         public ActionResult Create()
         {
-            //string StatusSelected;
-            //try
-            //{
-            //    StatusSelected = db.Songs.Select(s => new SelectListItem { Value = s.Status, Text = s.Status }).ToString();
-            //}
-            //catch (Exception)
-            //{
-            //    StatusSelected = "Preliminary";
-            //}
+            string StatusSelected;
+            try
+            {
+                StatusSelected = db.Songs.Select(s => new SelectListItem { Value = s.Status, Text = s.Status }).ToString();
+            }
+            catch (Exception)
+            {
+                StatusSelected = "Preliminary";
+            }
 
-            //ViewBag.StatusSelected = StatusSelected; IEnumerable<SelectListItem> StatusList = db.Statuses.Select(s => new SelectListItem { Value = s.StatusType, Text = s.StatusType });
-            //ViewBag.StatusList = StatusList;
+            ViewBag.StatusSelected = StatusSelected; IEnumerable<SelectListItem> StatusList = db.Statuses.Select(s => new SelectListItem { Value = s.StatusType, Text = s.StatusType });
+            ViewBag.StatusList = StatusList;
 
             return View();
         }
@@ -87,10 +87,10 @@ namespace Musicon.Controllers
                 StatusSelected = "Preliminary";
             }
 
-            //ViewBag.StatusSelected = StatusSelected;
+            ViewBag.StatusSelected = StatusSelected;
 
-            //IEnumerable<SelectListItem> StatusList = db.Status.Select(s => new SelectListItem { Value = s.StatusType, Text = s.StatusType });
-            //ViewBag.StatusList = StatusList;
+            IEnumerable<SelectListItem> StatusList = db.Statuses.Select(s => new SelectListItem { Value = s.StatusType, Text = s.StatusType });
+            ViewBag.StatusList = StatusList;
 
             if (id == null)
             {

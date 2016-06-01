@@ -1,15 +1,17 @@
 ﻿@model Musicon.Models.Song
 
+
 @{
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Song</h4>
         <hr />
@@ -57,7 +59,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Length, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Length, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Length, new { htmlAttributes = new { @class = "form-control", @Value = "3.00" } })
                 @Html.ValidationMessageFor(model => model.Length, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -65,7 +67,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.DropDownList("StatusList" , (IEnumerable<SelectListItem>)ViewBag.StatusList, new { @class = "form-control" })*@
+                @Html.DropDownList("Status", (IEnumerable<SelectListItem>)ViewBag.StatusList, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -81,7 +84,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EntryDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EntryDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.EntryDate, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToShortDateString() } })
                 @Html.ValidationMessageFor(model => model.EntryDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -97,3 +100,7 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

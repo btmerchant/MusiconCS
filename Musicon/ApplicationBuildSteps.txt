@@ -19,3 +19,5 @@ Added Statuses to DAL
 Add-Migration StatusModelAdded
 Added Seed data for Status to the Migrations Configuration.cs file for Status Table
 Update-Database (Had to delete App_Data .mdf file first, Update-Database -Target StatusModelAdded -Force)
+Added ViewBag content for StatusList to SongController both for create and for edit
+Added Dropdown input code to the Song-create and Edit views
