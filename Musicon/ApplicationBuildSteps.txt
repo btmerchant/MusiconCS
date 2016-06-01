@@ -9,6 +9,7 @@ Added the Song.cs Class to Models Dir and added all the data setterGetters
 Added DAL folder and MusiconContext.cs and added Songs DBSet setterGetter - BUILD! -
 Added the SongController.cs file to Controllers Dir(w/Views using entity franework) on class Song (Musicon2.Models)
 Added Include ApplicationDbContext to the Musicon2Context Class and deleted the App_Data .mdf data schema file
-Enabled Migrations with Enable-Migrations -ContextTypeName Musicon2.DAL.Musicon2Context
+----- Commit
+Enabled Migrations with Enable-Migrations -ContextTypeName Musicon.DAL.MusiconContext
 Added Seed data for Songs to the Migrations Configuration.cs file
 Initialized Migrations with  Add-Migration Initial
