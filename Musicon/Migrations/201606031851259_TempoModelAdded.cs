@@ -16,10 +16,12 @@ namespace Musicon.Migrations
                     })
                 .PrimaryKey(t => t.TempoId);
             
+            AlterColumn("dbo.Songs", "Length", c => c.Double(nullable: false));
         }
         
         public override void Down()
         {
+            AlterColumn("dbo.Songs", "Length", c => c.String());
             DropTable("dbo.Tempi");
         }
     }

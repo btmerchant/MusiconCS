@@ -13,6 +13,7 @@ Added Include ApplicationDbContext to the Musicon2Context Class and deleted the 
 Enabled Migrations with Enable-Migrations -ContextTypeName Musicon.DAL.MusiconContext
 Added Seed data for Songs to the Migrations Configuration.cs file
 Initialized Migrations with  Add-Migration Initial
+---- Commit
 ***** New Data Model - Status
 Added Status Model w/ attributes
 Added Statuses to DAL
@@ -21,6 +22,7 @@ Added Seed data for Status to the Migrations Configuration.cs file for Status Ta
 Update-Database (Had to delete App_Data .mdf file first, Update-Database -Target StatusModelAdded -Force)
 Added ViewBag content for StatusList to SongController both for create and for edit
 Added Dropdown input code to the Song-create and Edit views for StatusList
+---- Commit
 ***** New Data Model - Tempo
 Added Tempo Model w/ attributes		
 Added Tempo to DAL
@@ -29,3 +31,8 @@ Added Seed data for Tempo to the Migrations Configuration.cs file
 Update-Database
 Added ViewBag content for TempoList to SongController both for create and for edit
 Added Dropdown input code to the Song-create and Edit views for TempoList
+---- Commit
+Added the Musicon.DAL MusiconRepository.cs file w/ some content (add more later!)
+Added Test DAL folder
+Added Test.DAL MusiconRepositoryTest.csd file /w some content (add more later!)
+

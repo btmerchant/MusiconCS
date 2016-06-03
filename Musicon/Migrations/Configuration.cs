@@ -36,7 +36,7 @@ namespace Musicon.Migrations
                 Composer = "Fade2Blue",
                 Key = "A",
                 Tempo = "Moderate",
-                Length = "",
+                Length = 3.0,
                 Status = "Active",
                 Vocal = "Brian",
                 EntryDate = DateTime.Now
@@ -49,7 +49,7 @@ namespace Musicon.Migrations
                 Composer = "Marty Robins",
                 Key = "C",
                 Tempo = "Moderate",
-                Length = "",
+                Length = 3.0,
                 Status = "Active",
                 Vocal = "Brian",
                 EntryDate = DateTime.Now
@@ -61,7 +61,7 @@ namespace Musicon.Migrations
                 Composer = "Joe Alles",
                 Key = "A",
                 Tempo = "Slow",
-                Length = "",
+                Length = 3.0,
                 Status = "Active",
                 Vocal = "Joe",
                 EntryDate = DateTime.Now

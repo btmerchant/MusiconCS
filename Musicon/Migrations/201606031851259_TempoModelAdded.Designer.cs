@@ -13,7 +13,7 @@ namespace Musicon.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201606012218342_TempoModelAdded"; }
+            get { return "201606031851259_TempoModelAdded"; }
         }
         
         string IMigrationMetadata.Source

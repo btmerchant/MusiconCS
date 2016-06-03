@@ -22,7 +22,7 @@ namespace Musicon.Models
 
         public string Tempo { get; set; }
 
-        public string Length { get; set; }
+        public double Length { get; set; }
 
         public string Status { get; set; }
 

@@ -40,7 +40,7 @@ namespace Musicon.Migrations
                         Composer = c.String(),
                         Key = c.String(),
                         Tempo = c.String(),
-                        Length = c.String(),
+                        Length = c.Double(),
                         Status = c.String(),
                         Vocal = c.String(),
                         EntryDate = c.DateTime(nullable: false),
