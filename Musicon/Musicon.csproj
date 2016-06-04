@@ -235,6 +235,10 @@
     <Compile Include="Migrations\201606031851259_TempoModelAdded.Designer.cs">
       <DependentUpon>201606031851259_TempoModelAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606041612118_SongGenreAdded.cs" />
+    <Compile Include="Migrations\201606041612118_SongGenreAdded.Designer.cs">
+      <DependentUpon>201606041612118_SongGenreAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Extensions\IdentityExtensions.cs" />
@@ -342,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606031851259_TempoModelAdded.resx">
       <DependentUpon>201606031851259_TempoModelAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606041612118_SongGenreAdded.resx">
+      <DependentUpon>201606041612118_SongGenreAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

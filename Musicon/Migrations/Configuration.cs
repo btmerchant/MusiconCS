@@ -39,7 +39,8 @@ namespace Musicon.Migrations
                 Length = 3.0,
                 Status = "Active",
                 Vocal = "Brian",
-                EntryDate = DateTime.Now
+                EntryDate = DateTime.Now,
+                Genre = "Bluebrass"
 
             },
             new Song
@@ -52,7 +53,8 @@ namespace Musicon.Migrations
                 Length = 3.0,
                 Status = "Active",
                 Vocal = "Brian",
-                EntryDate = DateTime.Now
+                EntryDate = DateTime.Now,
+                Genre = "Bluebrass"
             },
             new Song
             {
@@ -64,7 +66,8 @@ namespace Musicon.Migrations
                 Length = 3.0,
                 Status = "Active",
                 Vocal = "Joe",
-                EntryDate = DateTime.Now
+                EntryDate = DateTime.Now,
+                Genre = "Bluebrass"
             });
 
             context.Statuses.AddOrUpdate(i => i.StatusId,

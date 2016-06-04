@@ -29,5 +29,11 @@ namespace Musicon.Models
         public string Vocal { get; set; }
 
         public DateTime EntryDate { get; set; }
+
+        public string Genre { get; set; }
+
+       // public string Lyric { get; set; }
+
+
     }
 }
