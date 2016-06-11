@@ -10,6 +10,8 @@ namespace Musicon.Models
     {
         public int SongId { get; set; }
 
+        public virtual ApplicationUser Member { get; set; }
+
         [MaxLength(500)]
         [Required]
         public string Title { get; set; }

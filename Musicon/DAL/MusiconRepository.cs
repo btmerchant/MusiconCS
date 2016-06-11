@@ -3,12 +3,18 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Net;
+using System.Web.Mvc;
 using Musicon.Models;
+using Microsoft.AspNet.Identity;
+using System.Security.Principal;
 
 namespace Musicon.DAL
 {
-    public class MusiconRepository
+    
+    public class MusiconRepository : Controller
     {
+
         public MusiconContext context { get; set; }
         public IDbSet<ApplicationUser> Users { get { return context.Users; } }
 
@@ -16,7 +22,7 @@ namespace Musicon.DAL
         {
             context = new MusiconContext();
         }
-
+        // Allows us to isolate Repo from context during testing
         public MusiconRepository(MusiconContext _context)
         {
             context = _context;
@@ -25,7 +31,7 @@ namespace Musicon.DAL
         public ApplicationUser GetUser(string user_id)
         {
             return context.Users.FirstOrDefault(i => i.Id == user_id);
-        }
+        } 
 
         public int GetSongCount()
         {
@@ -37,11 +43,19 @@ namespace Musicon.DAL
             return context.Songs.ToList<Song>();
         }
 
-        public void AddSong(string title, string artist, string composer, string key, string tempo, int length, string status, string vocal, DateTime entryDate)
+        public List<Song> GetSongs(string user)
         {
-            Song new_song = new Song { Title = title, Artist = artist, Composer =  composer, Key =  key, Tempo =  tempo, Length = length, Status =  status, Vocal =  vocal, EntryDate  = entryDate};
+            List<Song> userList = context.Songs.ToList();
+            //IQueryable<Song> userQuery = context.Songs.Where(s => s.Member == user);
+            //List<Song> userList = userQuery.ToList();
+            return userList;
+        }
+
+        public void AddSong(string title, string artist, string composer, string key, string tempo, double length, string status, string vocal, DateTime entryDate, string genre, ApplicationUser member)
+        {
+            Song new_song = new Song{Title = title, Artist = artist, Composer = composer,Key = key,Tempo = tempo,Length = length, Status = status, Vocal = vocal,EntryDate = entryDate, Genre = genre, Member = member };
             context.Songs.Add(new_song);
-            context.SaveChanges();
+            context.SaveChanges();   
         }
 
         public Song GetSongOrNull(int _song_id)
