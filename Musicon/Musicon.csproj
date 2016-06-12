@@ -264,9 +264,14 @@
     <Compile Include="Migrations\201606090001298_AddedSongMember.Designer.cs">
       <DependentUpon>201606090001298_AddedSongMember.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606121927400_GroupModelAdded.cs" />
+    <Compile Include="Migrations\201606121927400_GroupModelAdded.Designer.cs">
+      <DependentUpon>201606121927400_GroupModelAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Extensions\IdentityExtensions.cs" />
+    <Compile Include="Models\Group.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Song.cs" />
@@ -381,6 +386,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606090001298_AddedSongMember.resx">
       <DependentUpon>201606090001298_AddedSongMember.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606121927400_GroupModelAdded.resx">
+      <DependentUpon>201606121927400_GroupModelAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

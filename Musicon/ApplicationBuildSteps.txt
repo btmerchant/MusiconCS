@@ -4,28 +4,31 @@ Edited all the nessisay files to add fields to the register data(FirstName, Last
 The files modified include(IdentityModel.cs, AccountViewModel.cs, Register.cshtml, AccountController.cs, )
 Added Models-Extentions Folder and IdentityExtentions.cs file to allow getting the users FirstName out of identity
 Adjusted Login Rules in ApplicationUserManager class in App_Start-IdentityConfig.cs file
------ Commit
+---- Commit
+**** New Data Model
 Added the Song.cs Class to Models Dir and added all the data setterGetters
 Added DAL folder and MusiconContext.cs and added Songs DBSet setterGetter - BUILD! -
 Added the SongController.cs file to Controllers Dir(w/Views using entity franework) on class Song (Musicon2.Models)
 Added Include ApplicationDbContext to the Musicon2Context Class and deleted the App_Data .mdf data schema file
------ Commit
+---- Commit
 Enabled Migrations with Enable-Migrations -ContextTypeName Musicon.DAL.MusiconContext
 Added Seed data for Songs to the Migrations Configuration.cs file
 Initialized Migrations with  Add-Migration Initial
 ---- Commit
-***** New Data Model - Status
+**** New Data Model - Status
 Added Status Model w/ attributes
 Added Statuses to DAL
+Added seed data to Migrations.Configuration.cs
 Add-Migration StatusModelAdded
 Added Seed data for Status to the Migrations Configuration.cs file for Status Table
 Update-Database (Had to delete App_Data .mdf file first, Update-Database -Target StatusModelAdded -Force)
 Added ViewBag content for StatusList to SongController both for create and for edit
 Added Dropdown input code to the Song-create and Edit views for StatusList
 ---- Commit
-***** New Data Model - Tempo
+**** New Data Model - Tempo
 Added Tempo Model w/ attributes		
 Added Tempo to DAL
+Added seed data to Migrations.Configuration.cs
 Add-Migration TempoModelAdded
 Added Seed data for Tempo to the Migrations Configuration.cs file
 Update-Database
@@ -35,4 +38,21 @@ Added Dropdown input code to the Song-create and Edit views for TempoList
 Added the Musicon.DAL MusiconRepository.cs file w/ some content (add more later!)
 Added Test DAL folder
 Added Test.DAL MusiconRepositoryTest.csd file /w some content (add more later!)
+**** Added Genre to Song data structure
+---- Commit
+**** Added Member to Songs data structure
+---- Commit
+Begun moving SongController data access to Musicon Repopsitory
+Added code to filter song list by Users Member id to Repo.GetUserSongs()
+Addjusted sucessful login to redirect to "/Song" view in AccountController Login()
+---- Commit
+**** New Data Model Group
+Added Group Model w/Attributes
+Added Groups to DAL
+Added seed data to Migrations.Configuration.cs
+Add-Migration GroupModelAdded
+Rebuild then Update-Database -Target GroupModelAdded
+
+
+
 

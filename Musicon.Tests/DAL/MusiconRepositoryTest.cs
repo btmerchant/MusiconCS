@@ -119,7 +119,7 @@ namespace Musicon.Tests.DAL
             ConnectMocksToDatastore();
 
             // Act
-            List<Song> list_of_songs = repo.GetSongs();
+            List<Song> list_of_songs = repo.GetAllSongs();
             List<Song> expected = new List<Song>();
 
             // Assert
