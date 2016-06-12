@@ -16,18 +16,19 @@ namespace Musicon.Controllers
     {
         public MusiconRepository Repo = new MusiconRepository();
 
-        public IEnumerable<Song> Get(string command)
+        public IEnumerable<Song> GetSongs(string command)
         {
             //Temporary!
             string group = "Fade2Blue";
 
-            string user = User.Identity.GetUserId();
-            // string user = Repo.GetUser(Repo.GetUserId());
+            //Get User ID form the HTTP context
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
             switch (command)
             {
                 case "Users":
                     {
-                        List<Song> songs = Repo.GetSongs(user);
+                        List<Song> songs = Repo.GetUserSongs(member);
                         return songs;
                     }
                 //case "Groups":
@@ -44,14 +45,17 @@ namespace Musicon.Controllers
         }
 
         // GET: Song
+        [Authorize]
         public ActionResult Index()
         {
-            string user = User.Identity.GetUserId();
-            //ViewBag.Songs = Repo.GetSongs();
-            return View(Repo.GetSongs(user));
+            //Get User ID form the HTTP context
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
+            return View(Repo.GetUserSongs(member));
         }
 
         // GET: Song/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -67,7 +71,8 @@ namespace Musicon.Controllers
         }
 
 
-        // GET: Poll/Create
+        // GET: Song/Create
+        [Authorize]
         public ActionResult Create()
         {
             ViewBag.Error = false;
@@ -102,6 +107,7 @@ namespace Musicon.Controllers
 
 
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre")] Song song)
         {

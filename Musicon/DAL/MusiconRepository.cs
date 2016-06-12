@@ -38,16 +38,34 @@ namespace Musicon.DAL
             return context.Songs.Count();
         }
 
-        public List<Song> GetSongs()
+        public List<Song> GetAllSongs()
         {
             return context.Songs.ToList<Song>();
         }
 
-        public List<Song> GetSongs(string user)
+        public List<Song> GetUserSongs(ApplicationUser user)
         {
-            List<Song> userList = context.Songs.ToList();
-            //IQueryable<Song> userQuery = context.Songs.Where(s => s.Member == user);
+            //List<Song> userList = context.Songs.ToList();
+            //IEnumerable<Song> userQuery = context.Songs.Where(s => s.Member == user);
             //List<Song> userList = userQuery.ToList();
+
+            //foreach (var songList in context.Songs)
+            //{
+            //    if (context.Songs.Any()
+            //    {
+
+            //    }
+            //}
+            List<Song> songs = context.Songs.ToList<Song>();
+            List<Song> userList = new List<Song>();
+     
+            foreach (var item in songs)
+            {
+                if (item.Member == user)
+                {
+                    userList.Add(item);
+                }
+            }
             return userList;
         }
 
