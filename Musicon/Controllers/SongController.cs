@@ -12,6 +12,7 @@ using System.Security.Principal;
 
 namespace Musicon.Controllers
 {
+    [Authorize]
     public class SongController : Controller
     {
         public MusiconRepository Repo = new MusiconRepository();
@@ -45,7 +46,6 @@ namespace Musicon.Controllers
         }
 
         // GET: Song
-        [Authorize]
         public ActionResult Index()
         {
             //Get User ID form the HTTP context
@@ -55,7 +55,6 @@ namespace Musicon.Controllers
         }
 
         // GET: Song/Details/5
-        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -72,7 +71,6 @@ namespace Musicon.Controllers
 
 
         // GET: Song/Create
-        [Authorize]
         public ActionResult Create()
         {
             ViewBag.Error = false;
@@ -105,9 +103,7 @@ namespace Musicon.Controllers
             return View();
         }
 
-
         [HttpPost]
-        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre")] Song song)
         {
@@ -124,98 +120,90 @@ namespace Musicon.Controllers
         return RedirectToAction("Index");
         }
 
-    //// GET: Song/Edit/5
-    //public ActionResult Edit(int? id)
-    //{
-    //    string StatusSelected;
-    //    string TempoSelected;
-    //    try
-    //    {
-    //        StatusSelected = db.Songs.Select(s => new SelectListItem { Value = s.Status, Text = s.Status }).ToString();
-    //    }
-    //    catch (Exception)
-    //    {
-    //        StatusSelected = "Preliminary";
-    //    }
+        // GET: Song/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            string StatusSelected;
+            string TempoSelected;
+            try
+            {
+                StatusSelected = Repo.GetSelectedStatus();
+            }
+            catch (Exception)
+            {
+                StatusSelected = "Preliminary";
+            }
 
-    //    try
-    //    {
-    //        TempoSelected = db.Songs.Select(s => new SelectListItem { Value = s.Tempo, Text = s.Tempo }).ToString();
-    //    }
-    //    catch (Exception)
-    //    {
-    //        TempoSelected = "Slow";
-    //    }
+            try
+            {
+                TempoSelected = Repo.GetSelectedTempo();
+            }
+            catch (Exception)
+            {
+                TempoSelected = "Slow";
+            }
 
-    //    ViewBag.StatusSelected = StatusSelected;
-    //    ViewBag.TempoSelected = TempoSelected;
+            ViewBag.StatusSelected = StatusSelected;
+            ViewBag.TempoSelected = TempoSelected;
 
-    //    IEnumerable<SelectListItem> StatusList = db.Statuses.Select(s => new SelectListItem { Value = s.StatusType, Text = s.StatusType });
-    //    IEnumerable<SelectListItem> TempoList = db.Tempos.Select(s => new SelectListItem { Value = s.TempoType, Text = s.TempoType });
-    //    ViewBag.StatusList = StatusList;
-    //    ViewBag.TempoList = TempoList;
+            IEnumerable<SelectListItem> StatusList = Repo.GetStatusList();
+            IEnumerable<SelectListItem> TempoList = Repo.GetTempoList();
+            ViewBag.StatusList = StatusList;
+            ViewBag.TempoList = TempoList;
 
-    //    if (id == null)
-    //    {
-    //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-    //    }
-    //    Song song = db.Songs.Find(id);
-    //    if (song == null)
-    //    {
-    //        return HttpNotFound();
-    //    }
-    //    return View(song);
-    //}
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Song song = Repo.GetSongOrNull((int)id);
+            //Song song = db.Songs.Find(id);
+            if (song == null)
+            {
+                return HttpNotFound();
+            }
+            return View(song);
+        }
 
-    //// POST: Song/Edit/5
-    //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-    //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-    //[System.Web.Http.HttpPost]
-    //[ValidateAntiForgeryToken]
-    //public ActionResult Edit([Bind(Include = "Member,Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre")] Song song)
-    //{
-    //    if (ModelState.IsValid)
-    //    {
-    //        db.Entry(song).State = EntityState.Modified;
-    //        db.SaveChanges();
-    //        return RedirectToAction("Index");
-    //    }
-    //    return View(song);
-    //}
+        // POST: Song/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "SongId,Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre")] Song song_to_edit)
+        {
+            if (ModelState.IsValid)
+            {
+                Repo.EditSong(song_to_edit);
+                //db.Entry(song).State = EntityState.Modified;
+                //db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(song_to_edit);
+        }
 
-    //// GET: Song/Delete/5
-    //public ActionResult Delete(int? id)
-    //{
-    //    if (id == null)
-    //    {
-    //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-    //    }
-    //    Song song = db.Songs.Find(id);
-    //    if (song == null)
-    //    {
-    //        return HttpNotFound();
-    //    }
-    //    return View(song);
-    //}
+        // GET: Song/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Song song = Repo.GetSong((int)id);
+            //Song song = db.Songs.Find(id);
+            if (song == null)
+            {
+                return HttpNotFound();
+            }
+            return View(song);
+        }
 
-    //// POST: Song/Delete/5
-    //[System.Web.Http.HttpPost, System.Web.Http.ActionName("Delete")]
-    //[ValidateAntiForgeryToken]
-    //public ActionResult DeleteConfirmed(int id)
-    //{
-    //    Song song = db.Songs.Find(id);
-    //    db.Songs.Remove(song);
-    //    db.SaveChanges();
-    //    return RedirectToAction("Index");
-    //}
-
-    //protected override void Dispose(bool disposing)
-    //{
-    //    if (disposing)
-    //    {
-    //        db.Dispose();
-    //    }
-    //    base.Dispose(disposing);
-    //}
-}
+        // POST: Song/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Repo.DeleteSelectedSong(id);
+            return RedirectToAction("Index");
+        }
+    }
 }

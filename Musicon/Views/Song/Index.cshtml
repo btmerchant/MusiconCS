@@ -12,7 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Title)
+            Song Title
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Artist)
@@ -33,7 +33,7 @@
             @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Vocal)
+            Vocalist
         </th>
         <th>
             @Html.DisplayNameFor(model => model.EntryDate)
@@ -72,6 +72,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.EntryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SongId }) |

@@ -30,6 +30,7 @@ namespace Musicon.Models
 
         public string Vocal { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime EntryDate { get; set; }
 
         public string Genre { get; set; }

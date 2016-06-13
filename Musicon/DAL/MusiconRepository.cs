@@ -38,24 +38,18 @@ namespace Musicon.DAL
             return context.Songs.Count();
         }
 
+        public Song GetSong(int id)
+        {
+            return context.Songs.Find(id); ;
+        }
+
         public List<Song> GetAllSongs()
         {
             return context.Songs.ToList<Song>();
         }
-
+        
         public List<Song> GetUserSongs(ApplicationUser user)
         {
-            //List<Song> userList = context.Songs.ToList();
-            //IEnumerable<Song> userQuery = context.Songs.Where(s => s.Member == user);
-            //List<Song> userList = userQuery.ToList();
-
-            //foreach (var songList in context.Songs)
-            //{
-            //    if (context.Songs.Any()
-            //    {
-
-            //    }
-            //}
             List<Song> songs = context.Songs.ToList<Song>();
             List<Song> userList = new List<Song>();
      
@@ -66,7 +60,13 @@ namespace Musicon.DAL
                     userList.Add(item);
                 }
             }
-            return userList;
+            return userList; 
+        }
+
+        public List<Song> GetGroupSongs(string group_Id) // Work in Progress
+        {
+            List<Song> groupSongList = new List<Song>();
+            return groupSongList;
         }
 
         public void AddSong(string title, string artist, string composer, string key, string tempo, double length, string status, string vocal, DateTime entryDate, string genre, ApplicationUser member)
@@ -86,7 +86,45 @@ namespace Musicon.DAL
             context.Entry(song_to_edit).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
         }
-    }
 
-  
+        public IEnumerable<SelectListItem> GetStatusList()
+        {
+            IEnumerable<SelectListItem> statusList = context.Statuses.Select(s => new SelectListItem { Value = s.StatusType, Text = s.StatusType });
+            return statusList;
+        }
+
+        public IEnumerable<SelectListItem> GetTempoList()
+        {
+            IEnumerable<SelectListItem> tempoList = context.Tempos.Select(s => new SelectListItem { Value = s.TempoType, Text = s.TempoType });
+            return tempoList;
+        }
+
+        public string GetSelectedStatus()
+        {
+            string statusSelected = context.Songs.Select(s => new SelectListItem { Value = s.Status, Text = s.Status }).ToString();
+            return statusSelected;
+        }
+
+        public string GetSelectedTempo()
+        {
+            string tempoSelected = context.Songs.Select(s => new SelectListItem { Value = s.Tempo, Text = s.Tempo }).ToString();
+            return tempoSelected;
+        }
+
+        public void DeleteSelectedSong(int id)
+        {
+            Song song = context.Songs.Find(id);
+            context.Songs.Remove(song);
+            context.SaveChanges();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                context.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+    }
 }
