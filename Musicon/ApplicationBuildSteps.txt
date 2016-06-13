@@ -52,7 +52,10 @@ Added Groups to DAL
 Added seed data to Migrations.Configuration.cs
 Add-Migration GroupModelAdded
 Rebuild then Update-Database -Target GroupModelAdded
-
-
+Added the GroupController.cs file to Controllers Dir(w/Views using entity franework) on class Group (Musicon2.Models)
+Completed refactor of SongController to Repository
+---- Commit
+Edited the Views to reflect the Groups Functionality
+---- Commit
 
 

@@ -41,13 +41,22 @@
                 <ul class="nav navbar-nav">
                     @if (ctrName == "Song")
                     {
-                        <li>@Html.ActionLink("Add/Edit", "Index", "Song", new { @style = "color:red;" })</li>
+                        <li>@Html.ActionLink("Songs", "Index", "Song", new { @style = "color:red;" })</li>
+                        <li>@Html.ActionLink("Groups", "Index", "Group")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    }
+                    else if (ctrName == "Group")
+                    {
+                        <li>@Html.ActionLink("Songs", "Index", "Song")</li>
+                        <li>@Html.ActionLink("Groups", "Index", "Group", new { @style = "color:red;" })</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Add/Edit", "Index", "Song")</li>
+                        <li>@Html.ActionLink("Songs", "Index", "Song")</li>
+                        <li>@Html.ActionLink("Groups", "Index", "Group")</li>
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     }

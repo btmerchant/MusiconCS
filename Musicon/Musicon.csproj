@@ -236,6 +236,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SongController.cs" />
@@ -363,6 +364,11 @@
     <Content Include="Views\Song\Details.cshtml" />
     <Content Include="Views\Song\Edit.cshtml" />
     <Content Include="Views\Song\Index.cshtml" />
+    <Content Include="Views\Group\Create.cshtml" />
+    <Content Include="Views\Group\Delete.cshtml" />
+    <Content Include="Views\Group\Details.cshtml" />
+    <Content Include="Views\Group\Edit.cshtml" />
+    <Content Include="Views\Group\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
