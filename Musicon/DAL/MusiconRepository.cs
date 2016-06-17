@@ -233,6 +233,25 @@ namespace Musicon.DAL
             return result;
         }
 
+        // MethodRepo   JoinGroupById
+        public bool JoinGroupById(int id, ApplicationUser user)
+        {
+            bool result = false;
+            Group found_group = GetGroupByIdOrNull(id);
+
+            if (found_group == null)
+            {
+                result = false;
+            }
+            else
+            {
+                context.GroupMemberRelations.Add(new GroupMember { User = user, Group = found_group });
+                context.SaveChanges();
+                result = true;
+            }
+            return result;
+        }
+
         // MethodRepo   IsUserAMember
         public bool IsUserAMember(string group_name, ApplicationUser user)
         {

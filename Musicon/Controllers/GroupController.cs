@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Musicon.DAL;
 using Musicon.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Musicon.Controllers
 {
@@ -125,6 +126,43 @@ namespace Musicon.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+
+
+
+
+        // GET: Groups/Join/5
+        // MethodGroupController   Join-Get
+        public ActionResult Join(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Group group = db.Groups.Find(id);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            return View(group);
+        }
+
+        // POST: Groups/Join/5
+        // MethodGroupController   Join-Post
+        [HttpPost, ActionName("Join")]
+        [ValidateAntiForgeryToken]
+        public ActionResult JoinConfirmed(int id)
+        {
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
+
+            Group group = db.Groups.Find(id);
+            Repo.JoinGroupById(id, member);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+
+
 
         // MethodGroupController   Dispose
         protected override void Dispose(bool disposing)

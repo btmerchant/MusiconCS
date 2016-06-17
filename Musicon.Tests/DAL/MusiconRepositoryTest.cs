@@ -350,9 +350,9 @@ namespace Musicon.Tests.DAL
             Assert.IsNull(actualNot);
         }
 
-        // MethodTests RepoEnsureICanJoinAGroup
+        // MethodTests RepoEnsureICanJoinAGroupByName
         [TestMethod]
-        public void RepoEnsureICanJoinAGroup()
+        public void RepoEnsureICanJoinAGroupByName()
         {
             // Arrange
             Group group_in_db = new Group { GroupId = 1, Name = "Group_A", DateFormed = myNow, Style = "Style_A" };
@@ -362,6 +362,25 @@ namespace Musicon.Tests.DAL
 
             // Act
             bool sucess = repo.JoinGroupByName("Group_A", user);
+            bool member = repo.IsUserAMember("Group_A", user);
+
+            // Assert
+            Assert.IsTrue(sucess);
+            Assert.IsTrue(member);
+        }
+
+        // MethodTests RepoEnsureICanJoinAGroupById
+        [TestMethod]
+        public void RepoEnsureICanJoinAGroupById()
+        {
+            // Arrange
+            Group group_in_db = new Group { GroupId = 1, Name = "Group_A", DateFormed = myNow, Style = "Style_A" };
+            groups_datasource.Add(group_in_db);
+            ApplicationUser user = new ApplicationUser();
+            ConnectMocksToDatastore();
+
+            // Act
+            bool sucess = repo.JoinGroupById(1, user);
             bool member = repo.IsUserAMember("Group_A", user);
 
             // Assert
