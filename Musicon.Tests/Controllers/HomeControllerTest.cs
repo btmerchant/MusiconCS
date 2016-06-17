@@ -35,7 +35,7 @@ namespace Musicon.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("Create your personal song list, Join with other users to form a group, Create your groups song list from its members personal song lists.", result.ViewBag.Message);
         }
 
         [TestMethod]

@@ -14,5 +14,6 @@ namespace Musicon.DAL
         public virtual DbSet<Status> Statuses { get; set; }
         public virtual DbSet<Tempo> Tempos { get; set; }
         public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<GroupMember> GroupMemberRelations { get; set; }
     }
 }

@@ -14,15 +14,18 @@ namespace Musicon.Controllers
     [Authorize]
     public class GroupController : Controller
     {
-        private MusiconContext db = new MusiconContext();
+        public MusiconRepository Repo = new MusiconRepository();
+        public MusiconContext db = new MusiconContext();
 
         // GET: Groups
+        // MethodGroupController   Index-Get
         public ActionResult Index()
         {
-            return View(db.Groups.ToList());
+            return View(Repo.GetAllGroups());
         }
 
         // GET: Groups/Details/5
+        // MethodGroupController   Details-Get
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,12 +41,14 @@ namespace Musicon.Controllers
         }
 
         // GET: Groups/Create
+        // MethodGroupController   Create-Get
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Groups/Create
+        // MethodGroupController   Create-Post
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -61,6 +66,7 @@ namespace Musicon.Controllers
         }
 
         // GET: Groups/Edit/5
+        // MethodGroupController   Edit-Get
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,6 +82,7 @@ namespace Musicon.Controllers
         }
 
         // POST: Groups/Edit/5
+        // MethodGroupController   Edit-Post
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -92,6 +99,7 @@ namespace Musicon.Controllers
         }
 
         // GET: Groups/Delete/5
+        // MethodGroupController   Delete-Get
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +115,7 @@ namespace Musicon.Controllers
         }
 
         // POST: Groups/Delete/5
+        // MethodGroupController   Delete-Post
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -117,6 +126,7 @@ namespace Musicon.Controllers
             return RedirectToAction("Index");
         }
 
+        // MethodGroupController   Dispose
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -57,5 +57,6 @@ Completed refactor of SongController to Repository
 ---- Commit
 Edited the Views to reflect the Groups Functionality
 ---- Commit
-
+Added GroupMember Model w/Attributes
+Added DbSet<GroupMember> GroupMemberRelations to DAL
 

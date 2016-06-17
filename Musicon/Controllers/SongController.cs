@@ -17,6 +17,7 @@ namespace Musicon.Controllers
     {
         public MusiconRepository Repo = new MusiconRepository();
 
+        // MethodSongController   GetSongs
         public IEnumerable<Song> GetSongs(string command)
         {
             //Temporary!
@@ -46,6 +47,7 @@ namespace Musicon.Controllers
         }
 
         // GET: Song
+        // MethodSongController   Index-Get
         public ActionResult Index()
         {
             //Get User ID form the HTTP context
@@ -55,6 +57,7 @@ namespace Musicon.Controllers
         }
 
         // GET: Song/Details/5
+        // MethodSongController   Details-Get
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -71,6 +74,7 @@ namespace Musicon.Controllers
 
 
         // GET: Song/Create
+        // MethodSongController   Create-Get
         public ActionResult Create()
         {
             ViewBag.Error = false;
@@ -103,6 +107,7 @@ namespace Musicon.Controllers
             return View();
         }
 
+        // MethodSongController   Create-Post
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre")] Song song)
@@ -121,6 +126,7 @@ namespace Musicon.Controllers
         }
 
         // GET: Song/Edit/5
+        // MethodSongController   Edit-Get
         public ActionResult Edit(int? id)
         {
             string StatusSelected;
@@ -165,6 +171,7 @@ namespace Musicon.Controllers
         }
 
         // POST: Song/Edit/5
+        // MethodSongController   Edit-Post
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -182,6 +189,7 @@ namespace Musicon.Controllers
         }
 
         // GET: Song/Delete/5
+        // MethodSongController   Delete-Get
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -198,6 +206,7 @@ namespace Musicon.Controllers
         }
 
         // POST: Song/Delete/5
+        // MethodSongController   Delete-Post
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

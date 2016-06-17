@@ -15,14 +15,14 @@ namespace Musicon.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Create your personal song list, Join with other users to form a group, Create your groups song list from its members personal song lists.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "For more information about this Application contact Brian@btmerchant.com.";
 
             return View();
         }
