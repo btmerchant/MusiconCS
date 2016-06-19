@@ -258,18 +258,66 @@ namespace Musicon.DAL
             bool result = false;
             //List<GroupMember> groupList = context.GroupMemberRelations.ToList(); //error here
 
-            Group group = GetGroupByNameOrNull(group_name);
-            try
+            foreach (var item in context.GroupMemberRelations.ToList())
             {
-               context.GroupMemberRelations.First(i => i.User == user);
-                result = true;
-            }
-            catch (Exception)
-            {
-                result = false;
+                if (item.Group.Name == group_name && item.User == user)
+                {
+                    result = true;
+                    break;
+                }
             }
             return result;
         }
+
+        //MethodRepo GetGroupMemberList
+        public List<ApplicationUser> GetGroupMemberList(int group_id, ApplicationUser user)
+        {
+            List<ApplicationUser> members = new List<ApplicationUser>();
+
+            foreach (var item in context.GroupMemberRelations.ToList())
+            {
+                if (item.Group.GroupId == group_id)
+                {
+                    members.Add(user);
+                }
+            }
+            return members;
+        }
+
+        //MethodRepo GetGroupMemberRelationById
+        public GroupMember GetGroupMemberRelationById(int? id)
+        {
+            GroupMember groupMember;
+            try
+            {
+                groupMember = context.GroupMemberRelations.First(i => i.Group.GroupId == id);
+            }
+            catch (Exception)
+            {
+                groupMember = null;
+            }
+            return groupMember; // ConnectMockstoDatastore made this possible
+        }
+
+        //MethodRepo QuitGroupById
+        public bool QuitGroupById(int id, ApplicationUser user)
+        {
+            bool result = false;
+            GroupMember found_group_member = GetGroupMemberRelationById(id);
+
+            if (found_group_member == null)
+            {
+                result = false;
+            }
+            else
+            {
+                context.GroupMemberRelations.Remove(found_group_member);
+                context.SaveChanges();
+                result = true;
+            }
+            return result;
+        }
+
 
         // MethodRepo   Dispose
         protected override void Dispose(bool disposing)

@@ -1,49 +1,63 @@
 ﻿@model Musicon.Models.Group
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Join";
 }
 
-<h2>Delete</h2>
+<h2>Join</h2>
+@if (ViewBag.Error)
+{
+    <div class="alert alert-danger" role="alert">@ViewBag.ErrorMessage</div>
+}
 
-<h3>Are you sure you want to join this ?</h3>
-<div>
-    <h4>Group</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<h3>Are you sure you want to join this Group?</h3>
+<br />
+<hr />
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+<div class="container">
+    <div class="row">
+        <div id="equalheight">
+            <div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-12 info-box">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Name)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.DateFormed)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.DateFormed)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Style)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Style)
+                    </dd>
+                </dl>
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateFormed)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateFormed)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Style)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Style)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Join" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                    <div class="form-actions no-color">
+                        <input type="submit" value="Join" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+                }
+            </div>
+            <div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-12 info-box">
+                <p></p>
+            </div>
+            <div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-12 info-box">
+                <h4>The members of this group are </h4>
+                @foreach (var item in ViewBag.memberList)
+                {
+                    <h5>@item.NameFirst @item.NameLast</h5>
+                }
+            </div>
         </div>
-    }
+    </div><!--/row-->   
 </div>

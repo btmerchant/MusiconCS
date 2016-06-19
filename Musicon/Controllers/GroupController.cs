@@ -134,6 +134,9 @@ namespace Musicon.Controllers
         // MethodGroupController   Join-Get
         public ActionResult Join(int? id)
         {
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -143,6 +146,10 @@ namespace Musicon.Controllers
             {
                 return HttpNotFound();
             }
+            List<ApplicationUser> memberList = Repo.GetGroupMemberList((int)id, member);
+            ViewBag.group = group;
+            ViewBag.memberList = memberList;
+            ViewBag.Error = false;
             return View(group);
         }
 
@@ -155,11 +162,84 @@ namespace Musicon.Controllers
             string user_id = User.Identity.GetUserId();
             ApplicationUser member = Repo.GetUser(user_id);
 
-            Group group = db.Groups.Find(id);
-            Repo.JoinGroupById(id, member);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            List<ApplicationUser> memberList = Repo.GetGroupMemberList((int)id, member);
+            ViewBag.memberList = memberList;
+            Group found_group = Repo.GetGroupByIdOrNull(id);
+            bool alreadyAMember = Repo.IsUserAMember((string)found_group.Name, member);
+            if (alreadyAMember)
+            {
+                ViewBag.ErrorMessage = "You are already a member of this group.";
+                ViewBag.Error = true;
+            }
+            else
+            {
+                ViewBag.Error = false;
+                Repo.JoinGroupById(id, member);
+                return RedirectToAction("Index");
+            }
+            return View(found_group);
         }
+
+
+
+
+        // GET: Groups/Quit/5
+        // MethodGroupController   Quit-Get
+        public ActionResult Quit(int? id)
+        {
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Group group = db.Groups.Find(id);
+            if (group == null)
+            {
+                return HttpNotFound();
+            }
+            List<ApplicationUser> memberList = Repo.GetGroupMemberList((int)id, member);
+            ViewBag.group = group;
+            ViewBag.memberList = memberList;
+            ViewBag.Error = false;
+            return View(group);
+        }
+
+        // POST: Groups/Quit/5
+        // MethodGroupController   Quit-Post
+        [HttpPost, ActionName("Quit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult QuitConfirmed(int id)
+        {
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
+
+            List<ApplicationUser> memberList = Repo.GetGroupMemberList((int)id, member);
+            ViewBag.memberList = memberList;
+            Group found_group = Repo.GetGroupByIdOrNull(id);
+            GroupMember found_group_member = Repo.GetGroupMemberRelationById(id);
+            bool alreadyAMember = Repo.IsUserAMember((string)found_group.Name, member);
+            if (!alreadyAMember)
+            {
+                ViewBag.ErrorMessage = "You can not quit this group you are not a member.";
+                ViewBag.Error = true;
+            }
+            else
+            {
+                ViewBag.Error = false;
+                ViewBag.QuitResult = Repo.QuitGroupById(id, member);
+            }
+            if (ViewBag.QuitResult)
+            {
+                return RedirectToAction("Index");
+            }else
+            {
+                return View(found_group);
+            }
+            
+        }
+
 
 
 

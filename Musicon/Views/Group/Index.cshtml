@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Musicon.Models.Group>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Group List";
 }
 
 <h2>Index</h2>
@@ -38,7 +38,8 @@
             @Html.ActionLink("Edit", "Edit", new { id=item.GroupId }) |
             @Html.ActionLink("Details", "Details", new { id=item.GroupId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.GroupId })   |
-            @Html.ActionLink("Join", "Join", new { id=item.GroupId })
+            @Html.ActionLink("Join", "Join", new { id=item.GroupId })   |
+            @Html.ActionLink("Quit", "Quit", new { id = item.GroupId })
         </td>
     </tr>
 }
