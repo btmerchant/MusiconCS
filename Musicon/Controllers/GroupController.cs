@@ -217,10 +217,11 @@ namespace Musicon.Controllers
 
             List<ApplicationUser> memberList = Repo.GetGroupMemberList((int)id, member);
             ViewBag.memberList = memberList;
+            ViewBag.QuitResult = false;
             Group found_group = Repo.GetGroupByIdOrNull(id);
             GroupMember found_group_member = Repo.GetGroupMemberRelationById(id);
             bool alreadyAMember = Repo.IsUserAMember((string)found_group.Name, member);
-            if (!alreadyAMember)
+            if (!alreadyAMember || found_group_member == null)
             {
                 ViewBag.ErrorMessage = "You can not quit this group you are not a member.";
                 ViewBag.Error = true;
