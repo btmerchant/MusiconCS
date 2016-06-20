@@ -2,6 +2,7 @@
 
 Features
 ___
+
 [*]Create User accounts
 [*]Create a Song
 [*]Create a list of Users songs
@@ -13,5 +14,6 @@ ___
 
 More Features
 ___
+
 [ ]Song Lyric
 [ ]Arrangement Notes
