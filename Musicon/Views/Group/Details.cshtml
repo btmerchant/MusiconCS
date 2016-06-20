@@ -4,39 +4,59 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Group Details</h2>
 
 <div>
-    <h4>Group</h4>
+    <br />
+    <br />
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="container">
+        <div class="row">
+            <div id="equalheight">
+                <div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-12 info-box">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Name)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateFormed)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.DateFormed)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateFormed)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.DateFormed)
+                        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Style)
-        </dt>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Style)
+                        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Style)
-        </dd>
+                        <dd>
+                            @Html.DisplayFor(model => model.Style)
+                        </dd>
 
-    </dl>
+                    </dl>
+                </div>
+              
+                <div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-12 info-box">
+                    <p></p>
+                </div>
+                <div class="col-12 col-lg-3 col-md-3 col-sm-3 col-xs-12 info-box">
+                    <h4 style="color:blue;">The members of this group are </h4>
+                    @foreach (var item in ViewBag.memberList)
+                    {
+                        <h5>@item.NameFirst @item.NameLast</h5>
+                    }
+                </div>
+            </div>
+        </div><!--/row-->
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.GroupId }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.GroupId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

@@ -29,16 +29,25 @@ namespace Musicon.Controllers
         // MethodGroupController   Details-Get
         public ActionResult Details(int? id)
         {
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Group group = db.Groups.Find(id);
+            Group group = Repo.GetGroupByIdOrNull((int)id);
             if (group == null)
             {
                 return HttpNotFound();
             }
+            List<ApplicationUser> memberList = Repo.GetGroupMemberList((int)id, member);
+            ViewBag.UserName = member.NameFirst;
+            ViewBag.group = group;
+            ViewBag.memberList = memberList;
+            ViewBag.Error = false;
             return View(group);
+
         }
 
         // GET: Groups/Create
@@ -147,6 +156,7 @@ namespace Musicon.Controllers
                 return HttpNotFound();
             }
             List<ApplicationUser> memberList = Repo.GetGroupMemberList((int)id, member);
+            ViewBag.UserName = member.NameFirst;
             ViewBag.group = group;
             ViewBag.memberList = memberList;
             ViewBag.Error = false;
@@ -200,6 +210,7 @@ namespace Musicon.Controllers
                 return HttpNotFound();
             }
             List<ApplicationUser> memberList = Repo.GetGroupMemberList((int)id, member);
+            ViewBag.UserName = member.NameFirst;
             ViewBag.group = group;
             ViewBag.memberList = memberList;
             ViewBag.Error = false;

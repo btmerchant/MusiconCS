@@ -20,9 +20,6 @@ namespace Musicon.Controllers
         // MethodSongController   GetSongs
         public IEnumerable<Song> GetSongs(string command)
         {
-            //Temporary!
-            string group = "Fade2Blue";
-
             //Get User ID form the HTTP context
             string user_id = User.Identity.GetUserId();
             ApplicationUser member = Repo.GetUser(user_id);
@@ -53,6 +50,8 @@ namespace Musicon.Controllers
             //Get User ID form the HTTP context
             string user_id = User.Identity.GetUserId();
             ApplicationUser member = Repo.GetUser(user_id);
+
+            ViewBag.UserName = member.NameFirst;
             return View(Repo.GetUserSongs(member));
         }
 
@@ -60,6 +59,9 @@ namespace Musicon.Controllers
         // MethodSongController   Details-Get
         public ActionResult Details(int? id)
         {
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -69,6 +71,8 @@ namespace Musicon.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.UserName = member.NameFirst;
+
             return View(song);
         }
 
@@ -77,6 +81,9 @@ namespace Musicon.Controllers
         // MethodSongController   Create-Get
         public ActionResult Create()
         {
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
+
             ViewBag.Error = false;
 
             string StatusSelected;
@@ -103,6 +110,7 @@ namespace Musicon.Controllers
             ViewBag.TempoSelected = TempoSelected; IEnumerable<SelectListItem> TempoList = Repo.context.Tempos.Select(s => new SelectListItem { Value = s.TempoType, Text = s.TempoType });
             ViewBag.StatusList = StatusList;
             ViewBag.TempoList = TempoList;
+            ViewBag.UserName = member.NameFirst;
 
             return View();
         }
@@ -129,6 +137,9 @@ namespace Musicon.Controllers
         // MethodSongController   Edit-Get
         public ActionResult Edit(int? id)
         {
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
+
             string StatusSelected;
             string TempoSelected;
             try
@@ -156,6 +167,7 @@ namespace Musicon.Controllers
             IEnumerable<SelectListItem> TempoList = Repo.GetTempoList();
             ViewBag.StatusList = StatusList;
             ViewBag.TempoList = TempoList;
+            ViewBag.UserName = member.NameFirst;
 
             if (id == null)
             {
