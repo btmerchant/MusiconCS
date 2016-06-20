@@ -3,10 +3,10 @@
 Features
 ___
 
-- [*]Create User accounts
-- [*]Create a Song
-- [*]Create a list of Users songs
-- [*]Create a Group
+- [x]Create User accounts
+- [x]Create a Song
+- [x]Create a list of Users songs
+- [x]Create a Group
 - [ ]Create a list of group songs
 - [ ]Add songs to Set Lists
 - [ ]Create an Event
