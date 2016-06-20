@@ -257,13 +257,14 @@ namespace Musicon.DAL
         {
             bool result = false;
             //List<GroupMember> groupList = context.GroupMemberRelations.ToList(); //error here
+            
+            Group group = GetGroupByNameOrNull(group_name);
 
-            foreach (var item in context.GroupMemberRelations.ToList())
+            foreach (var item in context.GroupMemberRelations)
             {
-                if (item.Group.Name == group_name && item.User == user)
+                if (item.Group.GroupId == group.GroupId && item.User == user)
                 {
                     result = true;
-                    break;
                 }
             }
             return result;
@@ -278,7 +279,7 @@ namespace Musicon.DAL
             {
                 if (item.Group.GroupId == group_id)
                 {
-                    members.Add(user);
+                    members.Add(item.User);
                 }
             }
             return members;
