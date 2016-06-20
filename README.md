@@ -19,3 +19,4 @@ ___
 
 - [ ]Song Lyric
 - [ ]Arrangement Notes
+- [ ]Create Random set lists
