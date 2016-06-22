@@ -389,6 +389,7 @@
     <Content Include="Views\GroupSongs\Details.cshtml" />
     <Content Include="Views\GroupSongs\Edit.cshtml" />
     <Content Include="Views\GroupSongs\Index.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
