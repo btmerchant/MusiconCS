@@ -237,6 +237,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\GroupSongsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SongController.cs" />
@@ -273,11 +274,16 @@
     <Compile Include="Migrations\201606132313171_GroupMemberModelAdded.Designer.cs">
       <DependentUpon>201606132313171_GroupMemberModelAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606201925487_GroupSongModelAdded.cs" />
+    <Compile Include="Migrations\201606201925487_GroupSongModelAdded.Designer.cs">
+      <DependentUpon>201606201925487_GroupSongModelAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Extensions\IdentityExtensions.cs" />
     <Compile Include="Models\Group.cs" />
     <Compile Include="Models\GroupMember.cs" />
+    <Compile Include="Models\GroupSong.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Song.cs" />
@@ -316,6 +322,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
+    <None Include="Properties\PublishProfiles\Musicon2 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
     <Content Include="Scripts\jquery-2.2.3.min.js" />
@@ -377,6 +384,11 @@
     <Content Include="Views\Group\Index.cshtml" />
     <Content Include="Views\Group\Join.cshtml" />
     <Content Include="Views\Group\Quit.cshtml" />
+    <Content Include="Views\GroupSongs\Create.cshtml" />
+    <Content Include="Views\GroupSongs\Delete.cshtml" />
+    <Content Include="Views\GroupSongs\Details.cshtml" />
+    <Content Include="Views\GroupSongs\Edit.cshtml" />
+    <Content Include="Views\GroupSongs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -406,6 +418,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201606132313171_GroupMemberModelAdded.resx">
       <DependentUpon>201606132313171_GroupMemberModelAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606201925487_GroupSongModelAdded.resx">
+      <DependentUpon>201606201925487_GroupSongModelAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

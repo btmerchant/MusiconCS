@@ -38,9 +38,9 @@ Added Dropdown input code to the Song-create and Edit views for TempoList
 Added the Musicon.DAL MusiconRepository.cs file w/ some content (add more later!)
 Added Test DAL folder
 Added Test.DAL MusiconRepositoryTest.csd file /w some content (add more later!)
-**** Added Genre to Song data structure
+**-- Added Genre to Song data structure
 ---- Commit
-**** Added Member to Songs data structure
+**-- Added Member to Songs data structure
 ---- Commit
 Begun moving SongController data access to Musicon Repopsitory
 Added code to filter song list by Users Member id to Repo.GetUserSongs()
@@ -57,6 +57,12 @@ Completed refactor of SongController to Repository
 ---- Commit
 Edited the Views to reflect the Groups Functionality
 ---- Commit
+**** New Data Model GroupMember
 Added GroupMember Model w/Attributes
 Added DbSet<GroupMember> GroupMemberRelations to DAL
-
+Lost track here a lot of interface tweaks and repo member adds
+**** New Data Model GroupSongs
+Added GroupSong Model w/Attributes
+Added DbSet<GroupSong> GroupSongRelations to DAL
+Add-Migration GroupSongModelAdded
+Added the GroupSongController (w/Views using entity franework) on class Group (Musicon2.Models)

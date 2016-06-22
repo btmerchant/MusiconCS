@@ -28,101 +28,101 @@ namespace Musicon.Migrations
             //    );
             //
 
-            context.Songs.AddOrUpdate(i => i.Title,
-                new Song
-                {
-                    Title = "Wasting Time",               // Data Example
-                    Artist = "Fade2Blue",
-                    Composer = "Fade2Blue",
-                    Key = "A",
-                    Tempo = "Moderate",
-                    Length = 3.0,
-                    Status = "Active",
-                    Vocal = "Brian",
-                    EntryDate = DateTime.Now,
-                    Genre = "Bluebrass"
+            //context.Songs.AddOrUpdate(i => i.Title,
+            //    new Song
+            //    {
+            //        Title = "Wasting Time",               // Data Example
+            //        Artist = "Fade2Blue",
+            //        Composer = "Fade2Blue",
+            //        Key = "A",
+            //        Tempo = "Moderate",
+            //        Length = 3.0,
+            //        Status = "Active",
+            //        Vocal = "Brian",
+            //        EntryDate = DateTime.Now,
+            //        Genre = "Bluebrass"
 
-                },
-                new Song
-                {
-                    Title = "Bend In The River",
-                    Artist = "Fade2Blue",
-                    Composer = "Marty Robins",
-                    Key = "C",
-                    Tempo = "Moderate",
-                    Length = 3.0,
-                    Status = "Active",
-                    Vocal = "Brian",
-                    EntryDate = DateTime.Now,
-                    Genre = "Bluebrass"
-                },
-                new Song
-                {
-                    Title = "The Eyes Have It",
-                    Artist = "Fade2Blue",
-                    Composer = "Joe Alles",
-                    Key = "A",
-                    Tempo = "Slow",
-                    Length = 3.0,
-                    Status = "Active",
-                    Vocal = "Joe",
-                    EntryDate = DateTime.Now,
-                    Genre = "Bluebrass"
-                });
+            //    },
+            //    new Song
+            //    {
+            //        Title = "Bend In The River",
+            //        Artist = "Fade2Blue",
+            //        Composer = "Marty Robins",
+            //        Key = "C",
+            //        Tempo = "Moderate",
+            //        Length = 3.0,
+            //        Status = "Active",
+            //        Vocal = "Brian",
+            //        EntryDate = DateTime.Now,
+            //        Genre = "Bluebrass"
+            //    },
+            //    new Song
+            //    {
+            //        Title = "The Eyes Have It",
+            //        Artist = "Fade2Blue",
+            //        Composer = "Joe Alles",
+            //        Key = "A",
+            //        Tempo = "Slow",
+            //        Length = 3.0,
+            //        Status = "Active",
+            //        Vocal = "Joe",
+            //        EntryDate = DateTime.Now,
+            //        Genre = "Bluebrass"
+            //    });
 
-            context.Statuses.AddOrUpdate(i => i.StatusId,
-                new Status
-                {
-                    StatusType = "Preliminary"               // Data Example
-                },
-                new Status
-                {
-                    StatusType = "Active"
-                },
-                new Status
-                {
-                    StatusType = "Closed"
-                });
+            //context.Statuses.AddOrUpdate(i => i.StatusId,
+            //    new Status
+            //    {
+            //        StatusType = "Preliminary"               // Data Example
+            //    },
+            //    new Status
+            //    {
+            //        StatusType = "Active"
+            //    },
+            //    new Status
+            //    {
+            //        StatusType = "Closed"
+            //    });
 
-            context.Tempos.AddOrUpdate(i => i.TempoId,
-                new Tempo
-                {
-                    TempoType = "Slow"               // Data Example
-                },
-                new Tempo
-                {
-                    TempoType = "Moderate"
-                },
-                new Tempo
-                {
-                    TempoType = "Fast"
-                });
+            //context.Tempos.AddOrUpdate(i => i.TempoId,
+            //    new Tempo
+            //    {
+            //        TempoType = "Slow"               // Data Example
+            //    },
+            //    new Tempo
+            //    {
+            //        TempoType = "Moderate"
+            //    },
+            //    new Tempo
+            //    {
+            //        TempoType = "Fast"
+            //    });
 
-            context.Groups.AddOrUpdate(i => i.GroupId,
-                new Group
-                {
-                    Name = "Fade2Blue",
-                    DateFormed = Convert.ToDateTime("03/01/2008"),
-                    Style = "Bluegrass"
-                },
-                new Group
-                {
-                    Name = "The Miltons",
-                    DateFormed = Convert.ToDateTime("03/01/2000"),
-                    Style = "Western Swing"
-                },
-                 new Group
-                 {
-                     Name = "Shelby Bottoms String Band",
-                     DateFormed = Convert.ToDateTime("03/01/2001"),
-                     Style = "Folk"
-                 },
-                new Group
-                {
-                    Name = "The Lonsome Pine Ramblers",
-                    DateFormed = Convert.ToDateTime("03/01/2002"),
-                    Style = "Mixed"
-                });
+            //context.Groups.AddOrUpdate(i => i.GroupId,
+            //    new Group
+            //    {
+            //        Name = "Fade2Blue",
+            //        DateFormed = Convert.ToDateTime("03/01/2008"),
+            //        Style = "Bluegrass"
+            //    },
+            //    new Group
+            //    {
+            //        Name = "The Miltons",
+            //        DateFormed = Convert.ToDateTime("03/01/2000"),
+            //        Style = "Western Swing"
+            //    },
+            //     new Group
+            //     {
+            //         Name = "Shelby Bottoms String Band",
+            //         DateFormed = Convert.ToDateTime("03/01/2001"),
+            //         Style = "Folk"
+            //     },
+            //    new Group
+            //    {
+            //        Name = "The Lonsome Pine Ramblers",
+            //        DateFormed = Convert.ToDateTime("03/01/2002"),
+            //        Style = "Mixed"
+            //    });
         }
     }
 }
