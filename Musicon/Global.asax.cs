@@ -19,10 +19,11 @@ namespace Musicon
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //added these last few lines to force migrations after deploy
+            //**** added these last few lines to force migrations after deploy
             var configuration = new Migrations.Configuration();
             var migrator = new DbMigrator(configuration);
-            migrator.Update();
+            //migrator.Update();
+            //****
         }
     }
 }
