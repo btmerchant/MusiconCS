@@ -17,7 +17,7 @@ namespace Musicon.Controllers
         public MusiconRepository Repo = new MusiconRepository();
 
         public ActionResult Index()
-        {          
+        {         
             return View(Repo.GetAllSongs());
         }
 

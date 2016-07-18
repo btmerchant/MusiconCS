@@ -59,8 +59,6 @@ namespace Musicon.Controllers
 
         // POST: Groups/Create
         // MethodGroupController   Create-Post
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "GroupId,Name,DateFormed,Style")] Group group)
@@ -93,8 +91,6 @@ namespace Musicon.Controllers
 
         // POST: Groups/Edit/5
         // MethodGroupController   Edit-Post
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "GroupId,Name,DateFormed,Style")] Group group)

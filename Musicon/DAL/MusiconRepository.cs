@@ -25,8 +25,6 @@ namespace Musicon.DAL
             context = new MusiconContext();
         }
 
-        // Allows us to isolate Repo from context during testing
-        // Method   MusiconRepository-Overload - Repo
         public MusiconRepository(MusiconContext _context)
         {
             context = _context;
@@ -196,13 +194,12 @@ namespace Musicon.DAL
             {
                 group = null;
             }
-            return group; // ConnectMockstoDatastore made this possible
+            return group;
         }
 
         // MethodRepo   GetGroupByIdOrNull
         public Group GetGroupByIdOrNull(int id)
-        {
-            //return context.Polls.Find(_group_id); // Requires explicit mocking of the DbSet.Find method
+        { 
             Group group;
             try
             {
@@ -212,7 +209,7 @@ namespace Musicon.DAL
             {
                 group = null;
             }
-            return group; // ConnectMockstoDatastore made this possible
+            return group;
         }
 
         // MethodRepo   JoinGroupByName
@@ -256,11 +253,10 @@ namespace Musicon.DAL
         public bool IsUserAMember(string group_name, ApplicationUser user)
         {
             bool result = false;
-            //List<GroupMember> groupList = context.GroupMemberRelations.ToList(); //error here
             
             Group group = GetGroupByNameOrNull(group_name);
 
-            foreach (var item in context.GroupMemberRelations)
+            foreach (var item in context.GroupMemberRelations.ToList())
             {
                 if (item.Group.GroupId == group.GroupId && item.User == user)
                 {
@@ -297,7 +293,7 @@ namespace Musicon.DAL
             {
                 groupMember = null;
             }
-            return groupMember; // ConnectMockstoDatastore made this possible
+            return groupMember;
         }
 
         //MethodRepo QuitGroupById

@@ -5,7 +5,7 @@
 }
 
 <div class="jumbotron">
-    <h1 style="display:inline;">Musicon</h1><h2 style="display:inline;"> - The </h2><h2 style="color:blue; display:inline;">Musi</h2><h2 style="display:inline;">c </h2><h2 style="color:blue; display:inline;">Con</h2><h2 style="display:inline;">nection</h2>
+    <h1 style="display:inline;">SONGLISTMAN</h1><h1 style="display:inline; color:red;">ager</h1>
     <p class="lead">Musicians SongList and Group Organization Tool.</p>
     <p class="lead">Please Login - or Register</p>
     @*<p><a href="http://musicon.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
@@ -25,15 +25,19 @@
                 Song Title
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Artist)
+                User
             </th>
 
             <th>
+                Song Details
+            </th>
+
+            @*<th>
                 @Html.DisplayNameFor(model => model.Key)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Tempo)
-            </th>
+            </th>*@
 
         </tr>
 
@@ -45,16 +49,16 @@
                 </td>
 
                 <td>
-                    @Html.DisplayFor(modelItem => item.Artist)
+                    @Html.DisplayFor(modelItem => item.Member.NameFirst) @Html.DisplayFor(modelItem => item.Member.NameLast)
                 </td>
 
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.Key)
                 </td>
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Tempo)
-                </td>
+                </td>*@
 
                 <td>
                     @Html.ActionLink("Details", "Details", new { id = item.SongId })

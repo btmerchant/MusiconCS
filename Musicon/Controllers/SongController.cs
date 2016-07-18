@@ -30,11 +30,7 @@ namespace Musicon.Controllers
                         List<Song> songs = Repo.GetUserSongs(member);
                         return songs;
                     }
-                //case "Groups":
-                //    {
-                //        List<Song> songs = Repo.GetMemberSongs(user);
-                //        return songs;
-                //    }
+
                 default:
                     {
                         List<Song> songs = new List<Song>();
@@ -184,8 +180,6 @@ namespace Musicon.Controllers
 
         // POST: Song/Edit/5
         // MethodSongController   Edit-Post
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SongId,Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre")] Song song_to_edit)
@@ -193,8 +187,6 @@ namespace Musicon.Controllers
             if (ModelState.IsValid)
             {
                 Repo.EditSong(song_to_edit);
-                //db.Entry(song).State = EntityState.Modified;
-                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(song_to_edit);
@@ -209,7 +201,6 @@ namespace Musicon.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Song song = Repo.GetSong((int)id);
-            //Song song = db.Songs.Find(id);
             if (song == null)
             {
                 return HttpNotFound();
