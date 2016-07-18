@@ -11,7 +11,7 @@ using Musicon.Models;
 
 namespace Musicon.Controllers
 {
-    public class GroupSongsController : Controller
+    public class GroupSongController : Controller
     {
         public MusiconRepository Repo = new MusiconRepository();
         private MusiconContext db = new MusiconContext();

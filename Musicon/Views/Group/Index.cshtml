@@ -26,7 +26,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.ActionLink(item.Name, "Details", new { id = item.GroupId })
+            @Html.ActionLink(item.Name, "Index", "GroupSong")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DateFormed)
