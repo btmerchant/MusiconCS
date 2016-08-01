@@ -35,8 +35,10 @@ namespace Musicon.Models
 
         public string Genre { get; set; }
 
-       // public string Lyric { get; set; }
+        [DataType(DataType.MultilineText)]
+        public string Arrangement { get; set; }
 
-
+        [DataType(DataType.MultilineText)]
+        public string Lyric { get; set; }
     }
 }

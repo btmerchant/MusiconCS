@@ -66,3 +66,5 @@ Added GroupSong Model w/Attributes
 Added DbSet<GroupSong> GroupSongRelations to DAL
 Add-Migration GroupSongModelAdded
 Added the GroupSongController (w/Views using entity franework) on class Group (Musicon2.Models)
+**-- Added Arrangement to Song data structure
+**-- Added Lyric to song data structure

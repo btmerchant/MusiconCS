@@ -114,7 +114,7 @@ namespace Musicon.Controllers
         // MethodSongController   Create-Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre")] Song song)
+        public ActionResult Create([Bind(Include = "Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre,Arrangement,Lyric")] Song song)
         {
 
             //Get User ID form the HTTP context
@@ -124,7 +124,7 @@ namespace Musicon.Controllers
 
             if (member != null && ModelState.IsValid)
             {
-                Repo.AddSong(song.Title,song.Artist,song.Composer,song.Key,song.Tempo,song.Length,song.Status,song.Vocal,song.EntryDate,song.Genre,member);             
+                Repo.AddSong(song.Title,song.Artist,song.Composer,song.Key,song.Tempo,song.Length,song.Status,song.Vocal,song.EntryDate,song.Genre,member,song.Arrangement,song.Lyric);             
             }
         return RedirectToAction("Index");
         }
