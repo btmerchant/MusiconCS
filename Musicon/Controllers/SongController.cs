@@ -182,7 +182,7 @@ namespace Musicon.Controllers
         // MethodSongController   Edit-Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SongId,Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre")] Song song_to_edit)
+        public ActionResult Edit([Bind(Include = "SongId,Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre,Arrangement,Lyric")] Song song_to_edit)
         {
             if (ModelState.IsValid)
             {
@@ -217,5 +217,104 @@ namespace Musicon.Controllers
             Repo.DeleteSelectedSong(id);
             return RedirectToAction("Index");
         }
+
+
+
+        //********************************************
+
+        
+        // GET: Song/Arrangement/5
+        // MethodSongController   Arrangement-Get
+        public ActionResult Arrangement(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Song song = Repo.GetSongOrNull((int)id);
+            if (song == null)
+            {
+                return HttpNotFound();
+            }
+            return View(song);
+        }
+
+        // POST: Song/Arrangement/5
+        // MethodSongController   Arrangement-Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Arrangement([Bind(Include = "SongId,Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre,Arrangement,Lyric")] Song song_to_edit)
+        {
+            if (ModelState.IsValid)
+            {
+                Repo.EditSong(song_to_edit);
+                return RedirectToAction("Index");
+            }
+            return View(song_to_edit);
+        }
+
+        // GET: Song/Lyric/5
+        // MethodSongController   Lyric-Get
+        public ActionResult Lyric(int? id)
+        {
+            string user_id = User.Identity.GetUserId();
+            ApplicationUser member = Repo.GetUser(user_id);
+
+            string StatusSelected;
+            string TempoSelected;
+            try
+            {
+                StatusSelected = Repo.GetSelectedStatus();
+            }
+            catch (Exception)
+            {
+                StatusSelected = "Preliminary";
+            }
+
+            try
+            {
+                TempoSelected = Repo.GetSelectedTempo();
+            }
+            catch (Exception)
+            {
+                TempoSelected = "Slow";
+            }
+
+            ViewBag.StatusSelected = StatusSelected;
+            ViewBag.TempoSelected = TempoSelected;
+
+            IEnumerable<SelectListItem> StatusList = Repo.GetStatusList();
+            IEnumerable<SelectListItem> TempoList = Repo.GetTempoList();
+            ViewBag.StatusList = StatusList;
+            ViewBag.TempoList = TempoList;
+            ViewBag.UserName = member.NameFirst;
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Song song = Repo.GetSongOrNull((int)id);
+            if (song == null)
+            {
+                return HttpNotFound();
+            }
+            return View(song);
+        }
+
+        // POST: Song/Lyric/5
+        // MethodSongController   Lyric-Post
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Lyric([Bind(Include = "SongId,Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre,Arrangement,Lyric")] Song song_to_edit)
+        {
+            if (ModelState.IsValid)
+            {
+                Repo.EditSong(song_to_edit);
+                return RedirectToAction("Index");
+            }
+            return View(song_to_edit);
+        }
+
+        //**************************************************
     }
 }

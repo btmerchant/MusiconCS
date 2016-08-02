@@ -394,6 +394,8 @@
     <Content Include="Views\GroupSong\Edit.cshtml" />
     <Content Include="Views\GroupSong\Index.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Song\Lyric.cshtml" />
+    <Content Include="Views\Song\Arrangement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

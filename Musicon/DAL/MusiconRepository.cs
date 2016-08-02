@@ -93,6 +93,57 @@ namespace Musicon.DAL
             context.SaveChanges();
         }
 
+
+
+
+
+
+
+        //******************************************
+
+        // MethodRepo   GetArrangementOrNull
+        public string GetArrangementOrNull(int _song_id)
+        {
+            Song tempSong = context.Songs.FirstOrDefault(i => i.SongId == _song_id);
+            return tempSong.Arrangement;
+        }
+
+
+        //MethodRepo    EditArrangement
+        public void EditArrangement(Song song_to_edit)
+        {
+            context.Entry(song_to_edit).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+        }
+
+
+        // MethodRepo   GetLyricOrNull
+        public string GetLyricOrNull(int _song_id)
+        {
+            Song tempSong = context.Songs.FirstOrDefault(i => i.SongId == _song_id);
+            return tempSong.Lyric.ToString();
+        }
+
+
+        //MethodRepo    EditLyric
+        public void EditLyric(Song song_to_edit)
+        {
+            context.Entry(song_to_edit).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+        }
+
+        //************************************************
+
+
+
+
+
+
+
+
+
+
+
         // MethodRepo   GetStatusList
         public IEnumerable<SelectListItem> GetStatusList()
         {

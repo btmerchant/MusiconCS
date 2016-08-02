@@ -1,10 +1,10 @@
 ﻿@model Musicon.Models.Song
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Arrangement";
 }
 
-<h2>Edit This Song</h2>
+<h2>Edit This Songs Arrangement Notes</h2>
 
 
 @using (Html.BeginForm())
@@ -16,6 +16,15 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.SongId)
+        @Html.HiddenFor(model => model.Artist)
+        @Html.HiddenFor(model => model.Composer)
+        @Html.HiddenFor(model => model.Key)
+        @Html.HiddenFor(model => model.Tempo)
+        @Html.HiddenFor(model => model.Length)
+        @Html.HiddenFor(model => model.Status)
+        @Html.HiddenFor(model => model.Vocal)
+        @Html.HiddenFor(model => model.EntryDate)
+        @Html.HiddenFor(model => model.Genre)
         @Html.HiddenFor(model => model.Lyric)
 
         <div class="form-group">
@@ -103,6 +112,14 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Arrangement, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Arrangement, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Lyric, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Lyric, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Lyric, "", new { @class = "text-danger" })
             </div>
         </div>
 
