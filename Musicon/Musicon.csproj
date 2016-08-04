@@ -282,6 +282,10 @@
     <Compile Include="Migrations\201608010040069_ArrangeLyric.Designer.cs">
       <DependentUpon>201608010040069_ArrangeLyric.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608040111252_ModifiedGroupSong.cs" />
+    <Compile Include="Migrations\201608040111252_ModifiedGroupSong.Designer.cs">
+      <DependentUpon>201608040111252_ModifiedGroupSong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Extensions\IdentityExtensions.cs" />
@@ -431,6 +435,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608010040069_ArrangeLyric.resx">
       <DependentUpon>201608010040069_ArrangeLyric.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608040111252_ModifiedGroupSong.resx">
+      <DependentUpon>201608040111252_ModifiedGroupSong.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

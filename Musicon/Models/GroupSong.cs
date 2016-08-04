@@ -8,10 +8,37 @@ namespace Musicon.Models
 {
     public class GroupSong
     {
-        public virtual int GroupSongId { get; set; }
+        public int GroupSongId { get; set; }
+
+        public virtual int GroupId { get; set; }
+
+        [MaxLength(500)]
         [Required]
-        public virtual Group Group { get; set; }
-        [Required]
-        public virtual Song Song { get; set; }
+        public string Title { get; set; }
+
+        public string Artist { get; set; }
+
+        public string Composer { get; set; }
+
+        public string Key { get; set; }
+
+        public string Tempo { get; set; }
+
+        public double Length { get; set; }
+
+        public string Status { get; set; }
+
+        public string Vocal { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public DateTime EntryDate { get; set; }
+
+        public string Genre { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        public string Arrangement { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        public string Lyric { get; set; }
     }
 }

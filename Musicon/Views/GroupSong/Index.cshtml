@@ -1,27 +1,88 @@
 ﻿@model IEnumerable<Musicon.Models.GroupSong>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GroupSongs";
 }
 
-<h2>Index</h2>
+<h2>Group Songs</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add a New Song", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            Title
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Artist)
+            </th>*@
+        @*<th>
+                @Html.DisplayNameFor(model => model.Composer)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Key)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tempo)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Length)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vocal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EntryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Genre)
+            </th>*@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GroupSongId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GroupSongId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.GroupSongId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Artist)
+                </td>*@
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Composer)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Key)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tempo)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Length)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vocal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EntryDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Genre)
+                </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.GroupSongId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GroupSongId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GroupSongId })
+            </td>
+        </tr>
+    }
 
 </table>
