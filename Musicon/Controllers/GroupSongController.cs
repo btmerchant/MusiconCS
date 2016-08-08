@@ -17,8 +17,9 @@ namespace Musicon.Controllers
         private MusiconContext db = new MusiconContext();
 
         // GET: GroupSongs
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            ViewBag.groupId = (int)id;
             return View(db.GroupSongRelations.ToList());
         }
 
@@ -40,6 +41,36 @@ namespace Musicon.Controllers
         // GET: GroupSongs/Create
         public ActionResult Create()
         {
+            //string user_id = User.Identity.GetUserId();
+            //ApplicationUser member = Repo.GetUser(user_id);
+
+            ViewBag.Error = false;
+
+            string StatusSelected;
+            string TempoSelected;
+            try
+            {
+                StatusSelected = Repo.context.Songs.Select(s => new SelectListItem { Value = s.Status, Text = s.Status }).ToString();
+            }
+            catch (Exception)
+            {
+                StatusSelected = "Preliminary";
+            }
+
+            try
+            {
+                TempoSelected = Repo.context.Songs.Select(s => new SelectListItem { Value = s.Tempo, Text = s.Tempo }).ToString();
+            }
+            catch (Exception)
+            {
+                TempoSelected = "Slow";
+            }
+
+            ViewBag.StatusSelected = StatusSelected; IEnumerable<SelectListItem> StatusList = Repo.context.Statuses.Select(s => new SelectListItem { Value = s.StatusType, Text = s.StatusType });
+            ViewBag.TempoSelected = TempoSelected; IEnumerable<SelectListItem> TempoList = Repo.context.Tempos.Select(s => new SelectListItem { Value = s.TempoType, Text = s.TempoType });
+            ViewBag.StatusList = StatusList;
+            ViewBag.TempoList = TempoList;
+            //ViewBag.UserName = member.NameFirst;
             return View();
         }
 

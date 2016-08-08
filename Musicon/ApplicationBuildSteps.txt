@@ -69,3 +69,4 @@ Added the GroupSongController (w/Views using entity franework) on class Group (M
 **-- Added Arrangement to Song data structure - and to repository AddSong method and the SongController Create method
 **-- Added Lyric to song data structure - and to repository AddSong method and the SongController Create method
 Ugh! there is a max-width setting in the site.css coment it out if you need a textarea Wider! and ctrl+F5 to clear browser cache!
+Refactored the GroupSong Model to contain actual songs not ref to member songs
