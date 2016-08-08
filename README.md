@@ -1,6 +1,6 @@
 # Musicon
-![Musicon](./SLM Screen Shot 2016-08-08 at 11.46.14 AM.png)
 Now known as SongListMan can be found at www.songlistman.com
+![Musicon](./SLM Screen Shot 2016-08-08 at 11.46.14 AM.png)
 
 The application allows a musician to create a song list with the following details.
   1. Title - The name of the song.
