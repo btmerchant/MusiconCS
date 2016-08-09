@@ -10,9 +10,97 @@
     <h4>GroupSong</h4>
     <hr />
     <dl class="dl-horizontal">
+        <dt>
+            Song Title
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Artist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Artist)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Composer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Composer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Key)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Key)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tempo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tempo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Length)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Length)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vocal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vocal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EntryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Arrangement)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Arrangement)
+        </dd>
+
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.GroupSongId }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", "GroupSong", new { Id = ViewBag.currentGroupId }, null)
 </p>

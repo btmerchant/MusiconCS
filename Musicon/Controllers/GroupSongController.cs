@@ -28,6 +28,8 @@ namespace Musicon.Controllers
         // GET: GroupSongs/Details/5
         public ActionResult Details(int? id)
         {
+            ViewData["currentGroupId"] = System.Web.HttpContext.Current.Session["currentGroupId"];
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -93,34 +95,68 @@ namespace Musicon.Controllers
             return View(groupSong);
         }
 
-        // GET: GroupSongs/Edit/5
+        // GET: GroupSong/Edit/5
+        // MethodGroupSongController   Edit-Get
         public ActionResult Edit(int? id)
         {
+            int currentGroupId = Convert.ToInt32(System.Web.HttpContext.Current.Session["currentGroupId"]);
+
+            string StatusSelected;
+            string TempoSelected;
+            try
+            {
+                StatusSelected = Repo.GetSelectedStatus();
+            }
+            catch (Exception)
+            {
+                StatusSelected = "Preliminary";
+            }
+
+            try
+            {
+                TempoSelected = Repo.GetSelectedTempo();
+            }
+            catch (Exception)
+            {
+                TempoSelected = "Slow";
+            }
+
+            ViewBag.StatusSelected = StatusSelected;
+            ViewBag.TempoSelected = TempoSelected;
+
+            IEnumerable<SelectListItem> StatusList = Repo.GetStatusList();
+            IEnumerable<SelectListItem> TempoList = Repo.GetTempoList();
+            ViewBag.StatusList = StatusList;
+            ViewBag.TempoList = TempoList;
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GroupSong groupSong = db.GroupSongs.Find(id);
-            if (groupSong == null)
+            GroupSong song = Repo.GetGroupSongOrNull((int)id);
+            //Song song = db.Songs.Find(id);
+            if (song == null)
             {
                 return HttpNotFound();
             }
-            return View(groupSong);
+            return View(song);
         }
 
-        // POST: GroupSongs/Edit/5
+        // POST: GroupSong/Edit/5
+        // MethodGroupSongController   Edit-Post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GroupSongId")] GroupSong groupSong)
+        public ActionResult Edit([Bind(Include = "GroupSongId,Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre,Arrangement,Lyric")] GroupSong group_Song_to_edit)
         {
+            int currentGroupId = Convert.ToInt32(System.Web.HttpContext.Current.Session["currentGroupId"]);
             if (ModelState.IsValid)
             {
-                db.Entry(groupSong).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                Repo.EditGroupSong(group_Song_to_edit);
+                return RedirectToActionPermanent("Index",currentGroupId);
             }
-            return View(groupSong);
+            return View(group_Song_to_edit);
         }
+
 
         // GET: GroupSongs/Delete/5
         public ActionResult Delete(int? id)

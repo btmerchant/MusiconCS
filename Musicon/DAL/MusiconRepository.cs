@@ -114,6 +114,11 @@ namespace Musicon.DAL
             return context.Songs.FirstOrDefault(i => i.SongId == _song_id);
         }
 
+        // MethodRepo   GetSongOrNull
+        public GroupSong GetGroupSongOrNull(int _group_song_id)
+        {
+            return context.GroupSongs.FirstOrDefault(i => i.GroupSongId == _group_song_id);
+        }
 
         //MethodRepo    EditSong
         public void EditSong(Song song_to_edit)
@@ -122,6 +127,12 @@ namespace Musicon.DAL
             context.SaveChanges();
         }
 
+        //MethodRepo    EditGroupSong
+        public void EditGroupSong(GroupSong group_song_to_edit)
+        {
+            context.Entry(group_song_to_edit).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+        }
 
 
 
