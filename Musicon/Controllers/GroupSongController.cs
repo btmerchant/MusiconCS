@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Musicon.DAL;
 using Musicon.Models;
 
+
 namespace Musicon.Controllers
 {
     public class GroupSongController : Controller
@@ -19,8 +20,9 @@ namespace Musicon.Controllers
         // GET: GroupSongs
         public ActionResult Index(int? id)
         {
-            ViewBag.groupId = (int)id;
-            return View(db.GroupSongRelations.ToList());
+            System.Web.HttpContext.Current.Session["currentGroupId"] = id;
+            List<GroupSong> groupSongList = Repo.GetGroupSongs();
+            return View(groupSongList);
         }
 
         // GET: GroupSongs/Details/5
@@ -30,7 +32,7 @@ namespace Musicon.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GroupSong groupSong = db.GroupSongRelations.Find(id);
+            GroupSong groupSong = db.GroupSongs.Find(id);
             if (groupSong == null)
             {
                 return HttpNotFound();
@@ -44,6 +46,7 @@ namespace Musicon.Controllers
             //string user_id = User.Identity.GetUserId();
             //ApplicationUser member = Repo.GetUser(user_id);
 
+            ViewData["currentGroupId"] = System.Web.HttpContext.Current.Session["currentGroupId"];
             ViewBag.Error = false;
 
             string StatusSelected;
@@ -77,12 +80,13 @@ namespace Musicon.Controllers
         // POST: GroupSongs/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GroupSongId")] GroupSong groupSong)
+        public ActionResult Create([Bind(Include = "Title,Artist,Composer,Key,Tempo,Length,Status,Vocal,EntryDate,Genre,Arrangement,Lyric")] GroupSong groupSong)
         {
+            ViewData["currentGroupId"] = System.Web.HttpContext.Current.Session["currentGroupId"];
+            int currentGroupId = Convert.ToInt32(System.Web.HttpContext.Current.Session["currentGroupId"]);
             if (ModelState.IsValid)
             {
-                db.GroupSongRelations.Add(groupSong);
-                db.SaveChanges();
+                Repo.AddGroupSong(groupSong.Title, groupSong.Artist, groupSong.Composer, groupSong.Key, groupSong.Tempo, groupSong.Length, groupSong.Status, groupSong.Vocal, groupSong.EntryDate, groupSong.Genre, currentGroupId, groupSong.Arrangement, groupSong.Lyric);
                 return RedirectToAction("Index");
             }
 
@@ -96,7 +100,7 @@ namespace Musicon.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GroupSong groupSong = db.GroupSongRelations.Find(id);
+            GroupSong groupSong = db.GroupSongs.Find(id);
             if (groupSong == null)
             {
                 return HttpNotFound();
@@ -125,7 +129,7 @@ namespace Musicon.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GroupSong groupSong = db.GroupSongRelations.Find(id);
+            GroupSong groupSong = db.GroupSongs.Find(id);
             if (groupSong == null)
             {
                 return HttpNotFound();
@@ -138,8 +142,8 @@ namespace Musicon.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            GroupSong groupSong = db.GroupSongRelations.Find(id);
-            db.GroupSongRelations.Remove(groupSong);
+            GroupSong groupSong = db.GroupSongs.Find(id);
+            db.GroupSongs.Remove(groupSong);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

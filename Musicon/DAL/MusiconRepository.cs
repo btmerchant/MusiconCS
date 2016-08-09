@@ -42,6 +42,12 @@ namespace Musicon.DAL
             return context.Songs.Count();
         }
 
+        // MethodRepo   GetGroupSongCount
+        public int GetGroupSongCount()
+        {
+            return context.GroupSongs.Count();
+        }
+
         //MethodRepo    GetSong
         public Song GetSong(int id)
         {
@@ -70,14 +76,37 @@ namespace Musicon.DAL
             return userList; 
         }
 
+        public List<GroupSong> GetGroupSongs()
+        {
+            List<GroupSong> groupSongs = context.GroupSongs.ToList<GroupSong>();
+            List<GroupSong> groupSongList = new List<GroupSong>();
+            int currentGroupId = Convert.ToInt32(System.Web.HttpContext.Current.Session["currentGroupId"]);
+
+            foreach (var item in groupSongs)
+            {
+                if (item.GroupId == currentGroupId)
+                {
+                    groupSongList.Add(item);
+                }
+            }
+            return groupSongList;
+        }
+
         // MethodRepo   AddSong
-        public void AddSong(string title, string artist, string composer, string key, string tempo, double length, string status, string vocal, DateTime entryDate, string genre, ApplicationUser member, string arrangement, string lyric)
+        public void AddSong(string title, string artist, string composer, string key, string tempo, double length, string status, string vocal, DateTime entryDate, string genre, ApplicationUser member , string arrangement, string lyric)
         {
             Song new_song = new Song{Title = title, Artist = artist, Composer = composer,Key = key,Tempo = tempo,Length = length, Status = status, Vocal = vocal,EntryDate = entryDate, Genre = genre, Member = member, Arrangement = arrangement, Lyric = lyric };
             context.Songs.Add(new_song);
             context.SaveChanges();   
         }
 
+        // MethodRepo   AddGroupSong
+        public void AddGroupSong(string title, string artist, string composer, string key, string tempo, double length, string status, string vocal, DateTime entryDate, string genre, int groupId, string arrangement, string lyric)
+        {
+            GroupSong new_song = new GroupSong { Title = title, Artist = artist, Composer = composer, Key = key, Tempo = tempo, Length = length, Status = status, Vocal = vocal, EntryDate = entryDate, Genre = genre, GroupId = groupId, Arrangement = arrangement, Lyric = lyric };
+            context.GroupSongs.Add(new_song);
+            context.SaveChanges();
+        }
 
         // MethodRepo   GetSongOrNull
         public Song GetSongOrNull(int _song_id)
